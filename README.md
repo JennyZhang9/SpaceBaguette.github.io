@@ -1,113 +1,89 @@
 # Astro Sensor
 
-## 1. What the website does
+## 1. What we built
 
-ASTRA-PULSE is a Space Baguettes astronaut health research prototype for NASA Space Apps 2026. It demonstrates **gather → evaluate → act**: inspect real physiological signals, explore hypothetical changes, record personal context, and understand a practical next step.
+We are Space Baguettes, and we built Astro Sensor for the 2026 NASA Space Apps Challenge. Our project explores how astronauts on long missions could notice changes in their health, make sense of those changes, and decide what to check next when support from Earth may be limited.
 
-The website includes a real-data dashboard, an interactive 30-day scenario sandbox, a personal health journal, machine-learning pattern analysis, an experimental wellbeing check-in index, a rotatable wrist wearable with clickable sensor explanations, and seven dimensions of wellbeing. The interface uses rounded cards, pastel colors, responsive layouts and readable plots.
+| Step | How Astro Sensor supports it |
+| --- | --- |
+| **Gather** | Log readings and daily context in a private journal, view live heart rate from a compatible Bluetooth sensor, and set a daily check-in reminder. |
+| **Evaluate** | Replay real clinical recordings, chart personal entries, and compare hypothetical health patterns across spacecraft, space station, rover, and base scenarios. |
+| **Act** | Use the check-in breakdown to see what drove a change and what to review next, such as measurement conditions, rest opportunities, or a conversation with the crew support team. |
 
-### Open the website
+We keep three kinds of information distinct: measured research recordings, simulated scenarios, and entries you supply. Our check-in index is an educational prototype. It cannot diagnose a condition, establish that someone is healthy, or replace a mission medical protocol.
+
+### Open Astro Sensor
 
 Published website: [Open Astro Sensor](https://jennyzhang9.github.io/SpaceBaguette.github.io/astra-pulse/index.html?refresh=20261114-mission1).
 
-Double-click this folder’s index.html, or the root index.html shortcut. No installation, build step, account or server is required. All processing is browser-local. Bundled research records work offline; optional Google Fonts have system fallbacks. For a local HTTP preview, run node preview.cjs and open http://127.0.0.1:8765 .
+To run it locally, open the root `index.html` or `astra-pulse/index.html`. No account or build step is required. The core app and bundled datasets work from local files. For a local HTTP preview, run `node astra-pulse/preview.cjs` and open the address it prints. Bluetooth and desktop notifications depend on browser support and permissions.
 
-Real measurements are terrestrial clinical recordings, not astronaut data. Generated scenarios are explicitly synthetic. The check-in index is a transparent project demonstration, not a validated measure of overall health or all seven dimensions of wellbeing.
+## 2. How to use it
 
-## 2. How to navigate and use it
+### Home: replay real readings
 
-### Mission modes, crew reminders and status colors
+Choose one of six BIDMC clinical recordings. Drag the recording slider or press **Play recording** to follow heart rate, breathing rate, oxygen saturation, and pulse. The chart and reading cards follow the selected second. Missing samples stay missing. These recordings were collected on Earth; they are not astronaut reference values.
 
-- **Gather:** In **Devices**, under the Bluetooth tools, we let crew members set a daily check-in time and send a test reminder. The reminder opens **My journal** so the crew can record the readings called for by their mission plan. A sensor connection is optional. Reminders work while the app is open, including a catch-up reminder after opening it late. Desktop notifications require permission and browser support. We do not send messages to the wearable or deliver reminders while the site is closed.
-- **Evaluate:** In **What if?**, we offer **Spacecraft**, **Space station**, **Rover**, and **Base**. Choose a setting and load its example inputs, then adjust them to explore a different situation. We use illustrative values and environment-specific prompts inspired by [NASA’s five spaceflight hazards](https://www.nasa.gov/hrp/hazards/), not measured effects or environment-specific medical thresholds.
-- **Act:** We pair the existing next-step explanations with a color key: green for steady (75–100), yellow for keep watch (50–74), red for needs attention (25–49), and crimson for the lowest band (0–24) or an existing BP override. An override replaces the numeric score; missing scores stay neutral. The scenario plot colors each available point by its day’s overall demo index, not by a medical range for that measurement. We include written labels and line patterns, and leave raw research and journal plots neutral. These bands interpret our prototype index and are not clinical risk categories.
+### What if?: explore a mission scenario
 
-### Updated interface: Astro Sensor
+1. Pick **Spacecraft**, **Space station**, **Rover**, or **Base**, then select **Load example values**. Each environment provides a short mission context and editable example inputs. You can also choose an activity preset or load a profile from **Sleep data**.
+2. Adjust sleep, heart rate, blood pressure, stress, and sweat with sliders or number fields. Select a plotted measurement and move **Viewing day** to see how the hypothetical timeline changes. The selected changes build from day 11 to day 20.
+3. Read the selected day’s check-in breakdown and next steps. Open **How is this index calculated?** to see the weights and limitations.
+4. Open **Show advanced model settings** to choose a source recording and seed, generate another trace, or export the scenario as CSV.
 
-The site now uses a dark navy, cyan and violet space theme. Navigation labels are **Home**, **What if?**, **My journal**, **Devices**, **Wellbeing guide**, **Sleep data**, **Meet the team**, **Ask Helios** and **Data & science**. On **What if?**, select **Show advanced model settings** to reveal optional training controls. There is no global view switch. Optional scroll reveals respect reduced-motion preferences.
+We use the same experimental score bands on the score card and simulated trend plot:
 
-- **What if?** accepts numbers as well as sliders and includes work-shift, quiet-day and busy-day presets. Scenarios remain hypothetical.
-- **My journal** accepts single values or ranges such as `65-75`. Original ranges are retained in exported CSV and the table; charts and models use midpoints, without modeling uncertainty. Unit explanations appear beside the form and in the journal guide. Five paired sleep/heart-rate entries enable a correlation calculation; three heart-rate entries enable a simple recent-average forecast. Neither establishes causation or predicts illness.
-- **Devices** keeps the rotatable watch and cuff and adds a rotatable ear-sensor concept. Set sleep and movement goals in **My journal**; the saved goals appear in the watch preview on **Devices**. Export goals as CSV for a phone. Goals do not automatically sync or write to a real wearable.
-- **Connect heart-rate device** uses Web Bluetooth’s standard Heart Rate service on compatible browsers and HTTPS. It displays read-only notifications from an explicitly selected compatible nearby device. Hardware pairing has not been tested with a physical sensor. Consumer watches may not expose this service. Live readings are not automatically saved to the journal.
-- **Helios** is a free browser-local website guide. Open **Ask Helios** in the sidebar. It searches 31 curated explanations with TF-IDF ranking, concept/synonym expansion and a small current-page tie-break. It remembers the last topic for short follow-ups, offers relevant page buttons, retains up to 40 conversation messages across page navigation and declines questions without a reliable match. Clear chat resets the session conversation. It uses no API, embedding download or generative language model, and sends no questions or journal data to a server. Answers are curated website documentation, not medical advice. Daily encouragement changes by local calendar day.
+| Color | Label | Demo score |
+| --- | --- | --- |
+| Green | Steady | 75–100 |
+| Yellow | Keep watch | 50–74 |
+| Red | Needs attention | 25–49 |
+| Crimson | Highest demo concern | 0–24, or a blood-pressure override |
+| Neutral | No score | Insufficient inputs |
 
-**Appearance** offers a dark or light palette and a reading font with extra spacing. Both preferences are browser-local. **Wellbeing guide** adds opt-in sound and two paced seated movements; both stop when you navigate away. **Meet the team** uses illustrated role placeholders until names and photos are supplied. **Data & science** starts with plain-language data categories and keeps the original sources and methods in an expandable section.
+The plot colors each day by its **overall simulated check-in**, not by a clinical range for the selected measurement. Text labels and line patterns accompany the colors. A BP override suppresses the numeric score; the original research and raw journal plots remain neutral. The environment presets are illustrative and do not change medical thresholds.
 
-Runtime additions: `astro.js` implements these companion features, `astro.css` provides the accessible dark palette, and `orbit-scene.svg` is an original space illustration. Run `node astra-pulse/check-astro.cjs` from the repository root for checks of naming, typed inputs, modes, ranges, goal previews, ear controls, helper responses and mobile layouts. The browser dependency path is specific to the development environment.
+### My journal: log readings and set goals
 
-`pulse.js` implements the local retrieval guide and conversation UI. Run `node astra-pulse/check-pulse.cjs` to check website-question paraphrases, follow-up context, navigation links, session history, unknown questions, escaped input, reset and mobile width. Matching is heuristic retrieval rather than full language understanding; update the curated explanations when website features change.
+Choose a date and log the measurements you have, along with context such as a busy shift or recent exercise. Leave unknown values blank. You can enter a range such as `65-75`; we retain both endpoints in the table and CSV and use the midpoint for the plot and calculations. Saving the same date replaces that entry.
 
-### Research dashboard
+Entries remain in memory unless you select **Save this journal in this browser**. That option stores them in the current browser profile, where someone sharing the browser may also see them. We don’t upload journal entries. You can export a CSV, delete individual entries, or clear the journal.
 
-Select one of six original BIDMC research records. Inspect heart rate, respiratory rate, oxygen saturation and pulse. Drag Recording position to reveal the plot up to the chosen second; the dot and vertical line mark that position. Play recording advances both the plot and cards. Missing values stay missing.
+Choose a measurement to see its trend. With at least five paired sleep and heart-rate entries, we show a correlation. With at least three heart-rate entries, we show a simple estimate based on up to seven recent readings. Neither proves cause and effect or predicts illness. You can also set sleep and movement goals here; saved goals appear on the watch preview and can be exported as CSV.
 
-Try a scenario opens the sandbox. Track my health opens the personal journal. Explore the sensor concept opens the wrist wearable.
+### Devices: explore sensors, connect heart rate, and set reminders
 
-### Try a scenario
+Rotate the watch, ear sensor, or cuff concept and select a sensor to learn what it could measure and what can affect the reading. The 3D designs are educational illustrations. They do not take readings or send goals to real devices.
 
-1. Choose a familiar preset: steady routine, short nights, demanding week, after a workout, recovery, or loose sensor contact.
-2. Adjust sleep hours, heart rate, systolic/diastolic BP, reported stress and sweat context. These are hypothetical inputs, not new real observations.
-3. Select the plotted measurement. Drag Viewing day to reveal observations up to that day; the displayed readings, index and next-step explanations use that day. Play days advances the story.
-4. Inspect the index breakdown and expand How is this index calculated? to understand its weights and limitations.
-5. Select a source record and generation seed, then press Train & generate 30 days. Generate another trace changes the seed. Download scenario CSV exports all values with provenance.
+On a compatible browser, **Connect heart-rate device** can display live readings from a nearby Bluetooth device that exposes the standard Heart Rate service. The connection is read-only; live readings do not automatically enter the journal. We have not validated pairing on physical hardware.
 
-The default 30-day timeline starts with a hypothetical baseline. Selected changes build from day 11 to day 20. Heart-rate fluctuations come from a fitted empirical sampler of actual short research sequences, explicitly recentered to 62 bpm. Sleep, BP, stress and sweat are separate user-selected hypotheses. The simulation does not claim a learned causal relationship between these inputs.
+Under **Bluetooth device tools**, set a daily check-in time, send a test reminder, and optionally allow desktop notifications. A reminder links to **My journal** and does not require a connected sensor. It can appear while the app is open or when you open it after the scheduled time. It does not run while the site is closed, send a message to a wearable, or act as a medical alarm.
 
-### My health journal
+### Wellbeing guide, Sleep data, and project resources
 
-Enter a date and whatever measurements you have. Blank means unknown, not zero. Add notes such as “recorded after exercise” or “busy day.” Blood pressure should come from a validated cuff; stress and sweat are subjective daily context.
+- **Wellbeing guide:** Read practical suggestions across seven dimensions of wellbeing, play an optional ambient sound, or follow a paced seated movement guide. Sound and movement stop when you leave the page.
+- **Sleep data:** Explore 374 synthetic profiles in a scatter plot, view sample rows, or download the original CSV. Loading a profile into a scenario copies its inputs; it does not replay that person’s history.
+- **Ask Helios:** Ask how to use the site, what a score means, or where the data came from. Helios searches a curated guide, remembers the last topic for short follow-ups, and links to relevant pages. It runs locally and does not provide medical advice.
+- **Data & science:** See how we distinguish recorded, simulated, and personal data. Expand the methods section for sources, assumptions, and limitations.
+- **Meet the team:** See the six team cards. Names and photos are placeholders.
+- **Appearance:** Switch between dark and light themes or choose the reading font with extra spacing. The browser remembers your choices.
 
-Save check-in adds one entry per date; saving an existing date replaces it. Entries remain in session memory unless you select Save this journal in this browser. Optional browser storage persists across refreshes on that browser profile and may be visible to anyone using it. No health entries are uploaded.
+## 3. How it works
 
-Review trends, next steps and the journal table. Export CSV creates a local copy. Individual entries can be deleted. Clear journal removes session/browser entries after an in-page confirmation.
+### Code map
 
-Until there are eight earlier complete entries containing HR, sleep and reported stress, the index uses available context without ML physiology. Once there are enough, the model trains on up to 30 earlier complete entries and scores the newest entry, which is held out from training. BP change requires at least three earlier complete cuff readings for a personal reference. This is not a diagnosis.
-
-### Explore the wearable
-
-Drag the wrist device to rotate it, scroll to zoom, or focus it and use arrow keys. Try Auto-rotate and Reset view. Click flashing sensor markers or the sensor arrow controls. Each opens a dialog explaining collection, processing, estimated outputs and limitations. Escape or the close button dismisses it.
-
-Sensors shown: optical pulse; red/infrared oxygen estimation; skin conductance; motion; skin temperature. The external cuff is a separate manual input. Optical/EDA sensors require skin contact and are shown on the case for educational visibility. The virtual device is a CSS 3D concept, not connected hardware or a validated device design.
-
-### Wellbeing guide
-
-Explore physical, mental/emotional, social, spiritual/religious, intellectual, occupational and environmental wellbeing. Expand cards for small actions. Religious practice is personal and optional. The seven-dimension grouping is an educational project choice, not an official NASA diagnostic framework. A breathing illustration offers a gentle optional pause.
-
-### Science & evidence
-
-Find original-data attribution, the official NASA challenge, model boundaries and scientific sources. This page distinguishes real observations, generated sequences and user-entered context.
-
-### Sleep & lifestyle data
-
-Explore all 374 bundled Kaggle profiles in a scatter plot with selectable axes. Inspect the first 25 rows or download the full original CSV. In Try a scenario, select a dataset profile and press Use profile in scenario to copy its sleep duration, HR, BP and stress into the controls. The timeline remains generated; it is not that profile’s recorded history.
-
-The dataset author identifies these profiles as synthetic. A separate educational ML panel estimates the dataset’s sleep-quality rating from scenario inputs; it does not measure your actual sleep quality or replace the wellbeing check-in index.
-
-### Suggested demonstration
-
-Replay a real recording, switch to a short-sleep or demanding-week scenario, scrub from day 1 to day 20, explain the index and next steps, generate a new trace, demonstrate a journal entry, then open a wrist sensor explanation. Finish with the provenance and limitations.
-
-## 3. Code, datasets, training and evaluation
-
-### Active files
-
-| File | Responsibility |
+| Files in `astra-pulse/` | Role |
 | --- | --- |
-| index.html | Entry point and script loading |
-| style.css + experience.css | Pastel styling, responsive layout, charts, wearable and dialogs |
-| research-data.js | Six full original research records, bundled for offline use |
-| sleep-health.csv + sleep-data.js | Original Kaggle CSV and browser bundle of 374 synthetic profiles |
-| sleep-model.js | Dataset explorer, scenario profile loading and supervised sleep-quality regressor |
-| prepare-sleep.py + sleep-provenance.json | Reproducible Kaggle download, attribution and source metadata |
-| health-engine.js | Isolation Forest, empirical generation and index/action logic |
-| experience.js | Navigation, interactive plots, forms, replay, CSV and wearable interactions |
-| prepare-data.cjs | Reproducible source download and schema validation |
-| verify-v2.cjs | Numerical, source and page-generation checks |
-| browser-qa.cjs | Desktop/mobile browser interaction checks |
-| preview.cjs | Local-only static preview server |
+| `index.html`, `experience.js` | App entry point, navigation, plots, scenario controls, and journal |
+| `astro.js`, `cuff-model.js`, `comfort.js` | Devices, goal previews, journal insights, appearance, and wellbeing activities |
+| `mission.js`, `mission.css` | Mission presets, reminder scheduling, and accessible status bands |
+| `health-engine.js` | Isolation Forest, scenario generation, and index and next-step logic |
+| `research-data.js`, `prepare-data.cjs` | Bundled BIDMC recordings and data preparation |
+| `sleep-data.js`, `sleep-health.csv`, `sleep-model.js` | Synthetic sleep profiles, explorer, and sleep-quality regressor |
+| `prepare-sleep.py`, `sleep-provenance.json` | Sleep dataset preparation and attribution |
+| `pulse.js` | Helios conversation UI and local document retrieval |
 
-Older app.js, data.js, ml.js and verify.cjs remain as the prior prototype; index.html no longer loads them. refine-ui.cjs, refine-qa.cjs and finalize-docs.cjs are one-time development helpers, not runtime dependencies.
+Helios ranks curated answers using TF-IDF, synonym expansion, and the current page as a tie-break. It keeps conversation context in memory and uses no external AI service or generative language model. The timer checks the device’s local clock and stores the last reminder date in the browser to avoid repeating the daily reminder.
 
 ### Research data and license
 
@@ -119,7 +95,7 @@ BIDMC PPG and Respiration Dataset v1.0.0, records 01–06. Each has 481 original
 - Pimentel et al., Towards a Robust Estimation of Respiratory Rate from Pulse Oximeters, IEEE TBME 64(8), 1914–1923. DOI: 10.1109/TBME.2016.2613124.
 - PhysioNet attribution: Pollard et al. (2026), PhysioNet as a global platform for biomedical research. DOI: 10.1038/s44360-026-00096-z.
 
-Reproduce the download with node prepare-data.cjs (requires internet). No NASA physiological dataset, real BP, sleep, stress or EDA dataset is ingested in this version. NASA supplies the mission context and challenge brief. Keep that boundary explicit.
+To reproduce our BIDMC bundle, run `node astra-pulse/prepare-data.cjs` with internet access. We use NASA resources for mission context; we do not ingest NASA astronaut physiological data.
 
 The [Sleep Health and Lifestyle Dataset by Laksika Tharmalingam](https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset) is also bundled under CC0 Public Domain. Its author explicitly describes it as synthetic data created for illustrative purposes. The downloaded CSV contains 374 rows, although the source overview mentions 400. It contains sleep duration/quality, HR, BP, stress, activity and demographic fields; BP strings are additionally parsed into numeric systolic and diastolic columns. It contains no sweat/EDA, respiration or SpO₂ measurements. Run `python astra-pulse/prepare-sleep.py` from the repository root to reproduce the download with internet access.
 
@@ -149,31 +125,21 @@ Personal features are HR, sleep and reported stress from at least eight earlier 
 
 ML pattern similarity contributes 30%; sleep context 30%; reported stress 30%; relative BP change 10%. Missing terms are excluded and available weights renormalized. ML anomaly score is converted to a bounded similarity term; sleep uses distance from an illustrative 7.5-hour reference, stress uses the supplied 0–10 rating, and BP uses deviation from the defined/reference history.
 
-These are explicit design rules and unvalidated weights. No overall-wellbeing labels were available for supervised training. This hybrid index must not be described as a medically learned overall health score. It cannot capture all seven wellbeing dimensions. Sweat affects contextual next steps but is not used to diagnose stress or hydration.
+These are explicit design rules and unvalidated weights. No overall-wellbeing labels were available for supervised training. We use the index to explain our prototype’s inputs and next steps. It cannot capture all seven wellbeing dimensions. Sweat affects contextual next steps but is not used to diagnose stress or hydration.
 
 Action suggestions explain rest, supportive conversations, changed patterns, repeat BP measurements and sensor context. A BP input above 180 systolic or 120 diastolic suppresses the aggregate index and prioritizes sourced AHA guidance instead of displaying a potentially reassuring score. This adult terrestrial guidance does not replace actual mission medical protocols.
 
-### Verification
+### Verification and limits
 
-Run node verify-v2.cjs. It checks the six original records, exact observation count, training-window separation, deterministic generation, scenario responses, missing-data scoring, six page renders and replay plot changes.
+From the repository root, run `node astra-pulse/verify-v2.cjs` for checks of bundled data, repeatable generation, the training-window boundary, missing data, and plot behavior. The `check-sleep.cjs`, `check-astro.cjs`, `check-comfort.cjs`, and `check-pulse.cjs` browser scripts cover the dataset explorer and core interactions. These browser scripts may require adjusting the Playwright path on another computer.
 
-The current verifier also checks the 374-row sleep bundle, finite supervised evaluation, missing-input handling and all seven pages. Run `node astra-pulse/check-sleep.cjs` from the repository root for the dataset browser checks: plot axes, profile loading, ML panel, mobile layout and runtime errors. Its Playwright path is environment-specific.
+Our data and models do not establish astronaut norms or medical thresholds. Six short clinical recordings cannot represent a long-duration mission, and leaving out later time points from the same recording is not participant-level validation. The wearable concepts, scenario assumptions, and guidance would need domain review and testing before any operational use.
 
-Run node --check experience.js and node --check health-engine.js for syntax. With preview.cjs running and the bundled Playwright/installed Edge available, browser-qa.cjs exercises replay, health controls, actions, training, persistence, held-out personal ML, all sensor dialogs, keyboard rotation and mobile overflow. Its package path is environment-specific and may need adjustment on another computer.
+### Challenge and references
 
-### Scientific and submission limits
-
-Six short clinical recordings are not a long-term astronaut cohort. Same-record held-out time is not subject-held-out validation. Personal history may itself include health changes. The score, generation, action rules and wearable require domain review, calibration, longer/more diverse datasets and external testing before operational claims.
-
-Official challenge: https://www.spaceappschallenge.org/2026/challenges/create-health-monitoring-software-for-astronauts-on-space-missions/
-
-Sources for context and collection:
-
-- NASA sleep risks: https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules
-- NASA human health: https://www.nasa.gov/reference/fundamentals-of-human-health/
-- NHLBI cuff measurement: https://www.nhlbi.nih.gov/resources/self-measured-blood-pressure-fact-sheet
-- Optical sensing review: https://pmc.ncbi.nlm.nih.gov/articles/PMC9695300/
-- EDA review: https://pubmed.ncbi.nlm.nih.gov/36960675/
-- AHA high-BP guidance: https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/when-to-call-911-for-high-blood-pressure
-
-Before submitting, confirm current participant and local rules, add named team credits, publish the source repository, provide a demo video and preserve dataset licenses. This prototype is not NASA affiliated and cannot guarantee nomination or awards.
+- [NASA Space Apps challenge: Create Health Monitoring Software for Astronauts on Space Missions](https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/)
+- [NASA Human Research Program: Five hazards of human spaceflight](https://www.nasa.gov/hrp/hazards/)
+- [NASA: Risk from inadequate sleep and irregular schedules](https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules/)
+- [NHLBI: Self-measured blood pressure](https://www.nhlbi.nih.gov/resources/self-measured-blood-pressure-fact-sheet)
+- [AHA: Guidance on very high blood pressure](https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/when-to-call-911-for-high-blood-pressure)
+- [Optical sensing review](https://pmc.ncbi.nlm.nih.gov/articles/PMC9695300/) and [electrodermal activity review](https://pubmed.ncbi.nlm.nih.gov/36960675/)
