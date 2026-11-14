@@ -65,7 +65,7 @@ Under **Bluetooth device tools**, set a daily check-in time, send a test reminde
 - **Sleep data:** Explore 374 synthetic profiles in a scatter plot, view sample rows, or download the original CSV. Loading a profile into a scenario copies its inputs; it does not replay that person’s history.
 - **Ask Helios:** Ask how to use the site, what a score means, or where the data came from. Helios searches a curated guide, remembers the last topic for short follow-ups, and links to relevant pages. It runs locally and does not provide medical advice.
 - **Data & science:** See how we distinguish recorded, simulated, and personal data. Expand the methods section for sources, assumptions, and limitations.
-- **Meet the team:** See the six team cards. Names and photos are placeholders.
+- **Meet the team:** See the six team cards.
 - **Appearance:** Switch between dark and light themes or choose the reading font with extra spacing. The browser remembers your choices.
 
 ## 3. How it works
