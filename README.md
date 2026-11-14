@@ -8,13 +8,19 @@ The website includes a real-data dashboard, an interactive 30-day scenario sandb
 
 ### Open the website
 
-Published website: [Open Astro Sensor](https://jennyzhang9.github.io/SpaceBaguette.github.io/astra-pulse/index.html?refresh=20261108-team2).
+Published website: [Open Astro Sensor](https://jennyzhang9.github.io/SpaceBaguette.github.io/astra-pulse/index.html?refresh=20261114-mission1).
 
 Double-click this folder’s index.html, or the root index.html shortcut. No installation, build step, account or server is required. All processing is browser-local. Bundled research records work offline; optional Google Fonts have system fallbacks. For a local HTTP preview, run node preview.cjs and open http://127.0.0.1:8765 .
 
 Real measurements are terrestrial clinical recordings, not astronaut data. Generated scenarios are explicitly synthetic. The check-in index is a transparent project demonstration, not a validated measure of overall health or all seven dimensions of wellbeing.
 
 ## 2. How to navigate and use it
+
+### Mission modes, crew reminders and status colors
+
+- **Gather:** In **Devices**, under the Bluetooth tools, we let crew members set a daily check-in time and send a test reminder. The reminder opens **My journal** so the crew can record the readings called for by their mission plan. A sensor connection is optional. Reminders work while the app is open, including a catch-up reminder after opening it late. Desktop notifications require permission and browser support. We do not send messages to the wearable or deliver reminders while the site is closed.
+- **Evaluate:** In **What if?**, we offer **Spacecraft**, **Space station**, **Rover**, and **Base**. Choose a setting and load its example inputs, then adjust them to explore a different situation. We use illustrative values and environment-specific prompts inspired by [NASA’s five spaceflight hazards](https://www.nasa.gov/hrp/hazards/), not measured effects or environment-specific medical thresholds.
+- **Act:** We pair the existing next-step explanations with a color key: green for steady (75–100), yellow for keep watch (50–74), red for needs attention (25–49), and crimson for the lowest band (0–24) or an existing BP override. An override replaces the numeric score; missing scores stay neutral. The scenario plot colors each available point by its day’s overall demo index, not by a medical range for that measurement. We include written labels and line patterns, and leave raw research and journal plots neutral. These bands interpret our prototype index and are not clinical risk categories.
 
 ### Updated interface: Astro Sensor
 
