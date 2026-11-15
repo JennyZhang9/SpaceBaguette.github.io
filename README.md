@@ -14,7 +14,7 @@ We keep three kinds of information distinct: measured research recordings, simul
 
 ### Open Astro Sensor
 
-Published website: [Open Astro Sensor](https://jennyzhang9.github.io/SpaceBaguette.github.io/astra-pulse/index.html?refresh=20261115-cleanup1).
+Published website: [Open Astro Sensor](https://jennyzhang9.github.io/SpaceBaguette.github.io/astra-pulse/index.html?refresh=20261115-team5).
 
 To run it locally, open the root `index.html` or `astra-pulse/index.html`. No account or build step is required. The core app and bundled datasets work from local files. For a local HTTP preview, run `node astra-pulse/preview.cjs` and open the address it prints. Bluetooth and desktop notifications depend on browser support and permissions.
 

@@ -12,7 +12,7 @@ const teamMembers=[
   {name:'Maxon Chen',role:'Team Member',photo:'maxson',blurb:'Hello my name is Maxson and I am 11 years old. I go to highpoint academy and am in 6th grade. I like to draw and build stuff in my free time.'},
   {name:'Vivienne Wu',role:'Team Member',photo:'vivienne',blurb:'Hi, my name is Vivienne, and I am a member of the Space Baguettes. I am in 8th grade, and I love to play the violin and do robotics. I am from California, and something that I do for fun is reading.'},
   {name:'Matthew Chan',role:'Team Member',photo:'matthew',blurb:'Hello my name is Matthew Chan and I really enjoy playing games and also doing sports. I am in 6th grade and I go to Chandler in Pasadena.'},
-  {name:'Evelyn Ho',role:'Team Member',photo:'evelyn',blurb:'None'},
+  {name:'Evelyn Ho',role:'Team Member',photo:'evelyn',blurb:'Hi my name is evelyn and im currently a freshman at san marino high and i really like listening to artists like ENHYPEN and EVAN.'},
   {name:'Cathy',role:'Team Pet',photo:'cathy',blurb:"Hi! I'm the team cat! I love getting pets, and in my free time I love eating and having existential crisis!"}
 ];
 function teamPage(){
