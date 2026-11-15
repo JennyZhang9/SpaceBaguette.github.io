@@ -118,11 +118,12 @@ A conceptual wrist device: rotate the model, then click a flashing sensor or an 
 The seven dimensions of emotional wellbeing are a whole person experience that extends beyond a single metric or numerical index.|情绪健康的七个维度涵盖整个人的体验，远不止单项指标或数值。|Las siete dimensiones del bienestar emocional abarcan a toda la persona y van más allá de un único indicador o índice.|You're a whole person, bestie. One score does not define the vibes.|Your aura is a whole build, not one stat.|情緒健康的七個維度涵蓋整個人的體驗，遠不止單項指標或數值。
 The website uses three kinds of information. Here’s how to tell them apart.|网站使用三类信息。以下是区分它们的方法。|El sitio usa tres tipos de información. Así puedes distinguirlos.|Three kinds of data. Let's sort the actual receipts from the what-ifs.|Three data types. Time for a proof-or-cap check.|網站使用三類信息。以下是區分它們的方法。
 Find your way around Astro Sensor. Ask about a feature, then ask a follow-up if you need more detail.|了解 Astro Sensor 的使用方法。可以询问某个功能，并继续提问。|Aprende a usar Astro Sensor. Pregunta por una función y pide más detalles si los necesitas.|Helios has the site lore. Ask for the tea, then ask for more.|NPC Helios knows the map. Ask a question, then unlock more lore.|了解 Astro Sensor 的使用方法。可以詢問某個功能，并繼續提問。
-The work behind Astro Sensor. Individual names and photos will appear here when the team provides them.|了解 Astro Sensor 背后的团队。|Conoce al equipo detrás de Astro Sensor.|The squad behind the whole thing.|The squad that cooked this build.|了解 Astro Sensor 背后的團隊。`.split('\n').map(line=>{const [key,...values]=line.split('|');return [key,values]}));
+The work behind Astro Sensor.|了解 Astro Sensor 背后的团队。|Conoce al equipo detrás de Astro Sensor.|The squad behind the whole thing.|The squad that cooked this build.|了解 Astro Sensor 背後的團隊。`.split('\n').map(line=>{const [key,...values]=line.split('|');return [key,values]}));
 
 const transIndex={zh:0,es:1,genz:2,alpha:3,zhTraditional:4};
 for(const row of detailedCopy){const [key,...values]=row.split('|');uiCopy.set(key,values)}
 for(const [key,...values] of extendedCopy)uiCopy.set(key,values);
+for(const [photo,...values] of teamBlurbCopy){const member=teamMembers.find(m=>m.photo===photo);if(member)uiCopy.set(member.blurb,values)}
 function dynamicCopy(key,lookup){let m;
  const pick=(zh,es,genz,alpha,traditional)=>[zh,es,genz,alpha,traditional][transIndex[uiLanguage]];
  if(m=key.match(/^BIDMC (\d+) · clinical record$/))return pick(`BIDMC ${m[1]} · 临床记录`,`BIDMC ${m[1]} · registro clínico`,`BIDMC ${m[1]} · clinical receipts`,`BIDMC ${m[1]} · clinical replay`,`BIDMC ${m[1]} · 臨床紀錄`);

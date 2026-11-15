@@ -14,7 +14,7 @@ We keep three kinds of information distinct: measured research recordings, simul
 
 ### Open Astro Sensor
 
-Published website: [Open Astro Sensor](https://jennyzhang9.github.io/SpaceBaguette.github.io/astra-pulse/index.html?refresh=20261115-team5).
+Published website: [Open Astro Sensor](https://jennyzhang9.github.io/SpaceBaguette.github.io/astra-pulse/index.html?refresh=20261115-team6).
 
 To run it locally, open the root `index.html` or `astra-pulse/index.html`. No account or build step is required. The core app and bundled datasets work from local files. For a local HTTP preview, run `node astra-pulse/preview.cjs` and open the address it prints. Bluetooth and desktop notifications depend on browser support and permissions.
 
@@ -65,8 +65,8 @@ Under **Bluetooth device tools**, set a daily check-in time, send a test reminde
 - **Sleep data:** Explore 374 synthetic profiles in a scatter plot, view sample rows, or download the original CSV. Loading a profile into a scenario copies its inputs; it does not replay that person’s history.
 - **Ask Helios:** Ask how to use the site, what a score means, or where the data came from. Helios searches a curated guide, remembers the last topic for short follow-ups, and links to relevant pages. It runs locally and does not provide medical advice.
 - **Data & science:** See how we distinguish recorded, simulated, and personal data. Expand the methods section for sources, assumptions, and limitations.
-- **Meet the team:** Meet our six team members and Cathy, our team cat, through their photos and blurbs.
-- **Language:** We start in English and remember your selection in this browser. Choose Mandarin in Simplified or Traditional Chinese, Spanish, or one of two English Brainrot styles. We localize navigation, page explanations, scenario presets, score breakdowns, common controls, and Helios topic replies. Some longer technical copy and dynamic messages still fall back to English. We preserve user-entered text, original data, and measurement values.
+- **Meet the team:** Get to know the team through photos, roles, and short bios.
+- **Language:** We start in English and remember your selection in this browser. Choose Mandarin in Simplified or Traditional Chinese, Spanish, or one of two English Brainrot styles. We localize navigation, page explanations, scenario presets, score breakdowns, common controls, team bios, and Helios topic replies. Some longer technical copy and dynamic messages still fall back to English. We preserve user-entered text, original data, and measurement values.
 - **Appearance:** Switch between dark and light themes or choose the reading font with extra spacing. The browser remembers your choices.
 
 ## How Astro Sensor works

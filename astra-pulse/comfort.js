@@ -16,12 +16,12 @@ const teamMembers=[
   {name:'Cathy',role:'Team Pet',photo:'cathy',blurb:"Hi! I'm the team cat! I love getting pets, and in my free time I love eating and having existential crisis!"}
 ];
 function teamPage(){
-  return hero('Space Baguettes','Meet the team','The people behind Astro Sensor, plus our team cat.')+
+  return hero('Space Baguettes','Meet the team','The people behind Astro Sensor.')+
     `<div class="team-grid">${teamMembers.map(({name,role,photo,blurb})=>`<article class="card team-profile">
       <div class="team-portrait"><img src="team/${photo}.webp?v=20261115-team4" alt="" loading="lazy" decoding="async"></div>
       <h2 data-user-text>${escapeHTML(name)}</h2>
       <span class="badge">${role}</span>
-      <p class="team-blurb"><strong>Blurb</strong><span data-user-text>${escapeHTML(blurb)}</span></p>
+      <p class="team-blurb"><strong>Blurb</strong><span>${escapeHTML(blurb)}</span></p>
     </article>`).join('')}</div>`;
 }
 function missionIntro(){return `<section class="card mission-intro" aria-labelledby="mission-intro-title"><div><span class="eyebrow">The challenge</span><h2 id="mission-intro-title">How can a crew notice changes early?</h2><p>On a long mission, crews need to make sense of health readings with limited access to help. A single number misses the context: sleep, workload, stress and how someone feels.</p><p>Astro Sensor brings readings, daily context and simple next steps together in one place. It’s an educational prototype for exploring that problem.</p><div class="mission-flow"><span>Read a signal</span><span>Add context</span><span>Explore a next step</span></div></div><div class="mission-illustration" aria-hidden="true"><img src="orbit-scene.svg" alt="" width="280" height="160"><svg viewBox="0 0 240 50"><path d="M0 28H78L91 10L102 41L115 20L123 28H240"/></svg></div></section>`}
